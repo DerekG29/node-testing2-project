@@ -1,20 +1,40 @@
 const router = require('express').Router()
 const People = require('./people-model')
 
-router.get('/', (req, res, next) => {
-  res.json('[GET] /people')
+router.get('/', async (req, res, next) => {
+  try {
+    const data = await People.getAll()
+    res.json(data)
+  } catch (error) {
+    next(error)
+  }
 })
 
-router.get('/:id' , (req, res, next) => {
-  res.json(`[GET] /people/${req.params.id}`)
+router.get('/:id' , async (req, res, next) => {
+  try {
+    const data = await People.getById(req.params.id)
+    res.json(data)
+  } catch (error) {
+    next(error)
+  }
 })
 
-router.post('/', (req, res, next) => {
-  res.json('[POST] /people')
+router.post('/', async (req, res, next) => {
+  try {
+    const data = await People.insert(req.body)
+    res.status(201).json(data)
+  } catch (error) {
+    next(error)
+  }
 })
 
-router.delete('/:id', (req, res, next) => {
-  res.json(`[DELETE] /people/${req.params.id}`)
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const data = await People.remove(req.params.id)
+    res.json(data)
+  } catch (error) {
+    next(error)
+  }
 })
 
 module.exports = router;
