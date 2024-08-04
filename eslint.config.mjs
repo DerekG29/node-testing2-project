@@ -1,10 +1,8 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import jest from 'eslint-plugin-jest';
 
 const jestConfig = {
-  files: ['**/*.spec.js'],
-  plugins: { jest },
+  files: ['**/*.test.js'],
   rules: { ...jest.configs.recommended.rules },
   languageOptions: {
     globals: { ...globals.jest }
@@ -14,5 +12,6 @@ const jestConfig = {
 export default [
   {files: ["**/*.js"], languageOptions: {sourceType: "commonjs"}},
   {languageOptions: { globals: globals.node }},
+  jestConfig,
   pluginJs.configs.recommended,
 ];

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=testing jest --verbose --watchAll",
+    "test": "cross-env NODE_ENV=testing jest --verbose --watchAll --detectOpenHandles",
     "server": "nodemon index.js",
     "rollback": "knex migrate:rollback",
     "migrate": "knex migrate:latest",
@@ -19,8 +19,8 @@
     "knex": "^3.1.0",
     "nodemon": "^3.1.4",
     "sqlite3": "^5.1.7",
-    "supertest": "^7.0.0",
-    "eslint-plugin-jest": "^28.6.0"
+    "supertest": "^7.0.0"
+
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
